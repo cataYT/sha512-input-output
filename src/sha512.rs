@@ -1,7 +1,7 @@
 use sha2::{Sha512, Digest};
 use std::io::{self, Write};
 
-fn make_sha512() {
+pub fn make_sha512() {
     print!("Enter the string you want to sha512: ");
     io::stdout().flush().expect("Failed to flush");
 
@@ -16,7 +16,7 @@ fn make_sha512() {
     println!("The sha512 result is: {}", hex_result);
 }
 
-fn read_sha512() {
+pub fn read_sha512() {
     print!("Enter the expected hash: ");
     io::stdout().flush().expect("Failed to flush");
 
@@ -42,22 +42,5 @@ fn read_sha512() {
         println!("Hashes match! User input is verified.");
     } else {
         println!("Hashes do not match! User input could not be verified.");
-    }
-}
-
-fn main() {
-    print!("Enter the operation (Read Sha512 / Make Sha512): ");
-    io::stdout().flush().expect("Failed to flush");
-
-    let mut user_input_decide: String = String::new();
-    io::stdin().read_line(&mut user_input_decide).expect("Failed to read line");
-    let trimmed_input: String = user_input_decide.trim().to_lowercase();
-
-    if trimmed_input == "read" {
-        read_sha512();
-    } else if trimmed_input == "make" {
-        make_sha512();
-    } else {
-        println!("Invalid operation");
     }
 }
